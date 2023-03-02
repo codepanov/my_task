@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Autocomplete from './components/Autocomplete';
 
 function App() {
+
+  const [submittedValue, setSubmittedValue] = React.useState<string>("");
+
+  const handleSubmit = (value: string) => {
+    setSubmittedValue(value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Autocomplete onSubmit={handleSubmit} />
+      <p
+        style={{
+          fontSize: '18px',
+          color: '#666'
+        }}>
+        Submitted value: {submittedValue}
+      </p>
     </div>
   );
 }
