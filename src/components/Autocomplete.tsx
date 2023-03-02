@@ -60,7 +60,7 @@ const Autocomplete: React.FC<Props> = ({ onSubmit }) => {
       <div className="dt-items-found">
         {
           filteredData.map((item: string, index: number) => (
-            <p key={index}>{highlightMatchingText({ text: item, inputValue })}</p>
+            <p key={index}>{inputValue ? highlightMatchingText({ text: item, inputValue }) : item}</p>
           ))
         }
       </div>
