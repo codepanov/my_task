@@ -47,6 +47,11 @@ const Autocomplete: React.FC<Props> = ({ onSubmit }) => {
     });
   };
 
+  const handleOptionClick = (value: string) => {
+    setInputValue(value);
+    setFilteredData(data);
+  };
+
   return (
     <>
       <form className="dt-input-container" onSubmit={handleSubmit}>
@@ -60,7 +65,20 @@ const Autocomplete: React.FC<Props> = ({ onSubmit }) => {
       <div className="dt-items-found">
         {
           filteredData.map((item: string, index: number) => (
-            <p key={index}>{inputValue ? highlightMatchingText({ text: item, inputValue }) : item}</p>
+            <p 
+              key={index}
+              onClick={
+                () => handleOptionClick(item)
+              }
+            >
+              {
+                inputValue ? 
+                  highlightMatchingText(
+                    { text: item, inputValue }
+                  ) : 
+                item
+              }
+            </p>
           ))
         }
       </div>
