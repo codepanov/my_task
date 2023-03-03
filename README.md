@@ -39,3 +39,7 @@ To use the json-server:
 - open new terminal from the **server** folder and run the following command:
 
 ### `npx json-server --watch data.json --port 8000`
+
+
+**Note: tests are done only for the simulation of REST. They do not cover axios call to REST API!**
+
