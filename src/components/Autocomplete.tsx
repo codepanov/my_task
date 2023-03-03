@@ -17,22 +17,25 @@ const Autocomplete: React.FC<Props> = ({ onSubmit }) => {
     onSubmit(inputValue);
   };
 
-  // const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = event.target.value.toLowerCase().trim();
-  //   setInputValue(value);
+  //Comment out this section to simulate a REST call, and uncomment the below section
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.toLowerCase().trim();
+    setInputValue(value);
 
-  //   // simulate a REST call to filter the data
-  //   const filtered = await filterData(value);
-  //   setFilteredData(filtered);
-  // };
+    // simulate a REST call to filter the data
+    const filtered = await filterData(value);
+    setFilteredData(filtered);
+  };
 
-  // const filterData = async (value: string) => {
+  const filterData = async (value: string) => {
 
-  //   // simulate a REST call by waiting for a short delay
-  //   await new Promise((resolve) => setTimeout(resolve, 500));
-  //   return data.filter((item: string) => item.toLowerCase().includes(value));
-  // };
+    // simulate a REST call by waiting for a short delay
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return data.filter((item: string) => item.toLowerCase().includes(value));
+  };
 
+  //Uncomment this section to use the REST API, and comment out the above section
+  /*
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase().trim();
     setInputValue(value);
@@ -50,6 +53,7 @@ const Autocomplete: React.FC<Props> = ({ onSubmit }) => {
       return [];
     }
   };
+  */
 
   type Params = {
     text: string;
