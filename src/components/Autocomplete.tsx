@@ -2,6 +2,8 @@ import React from "react";
 
 import { data } from '../data/data';
 
+import axios from 'axios';
+
 interface Props {
   onSubmit: (value: string) => void;
 }
@@ -15,20 +17,38 @@ const Autocomplete: React.FC<Props> = ({ onSubmit }) => {
     onSubmit(inputValue);
   };
 
+  // const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = event.target.value.toLowerCase().trim();
+  //   setInputValue(value);
+
+  //   // simulate a REST call to filter the data
+  //   const filtered = await filterData(value);
+  //   setFilteredData(filtered);
+  // };
+
+  // const filterData = async (value: string) => {
+
+  //   // simulate a REST call by waiting for a short delay
+  //   await new Promise((resolve) => setTimeout(resolve, 500));
+  //   return data.filter((item: string) => item.toLowerCase().includes(value));
+  // };
+
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toLowerCase().trim();
     setInputValue(value);
 
-    // simulate a REST call to filter the data
     const filtered = await filterData(value);
     setFilteredData(filtered);
   };
 
   const filterData = async (value: string) => {
-
-    // simulate a REST call by waiting for a short delay
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    return data.filter((item: string) => item.toLowerCase().includes(value));
+    try {
+      const result = await axios.get('http://localhost:8000/fruit');
+      return result.data.filter((item: string) => item.toLowerCase().includes(value));
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
   };
 
   type Params = {
